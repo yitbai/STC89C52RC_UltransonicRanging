@@ -3,7 +3,7 @@
 
 #include <8052.h>
 
-void myGPIO_Init(void);
+void gpio_Init(void);
 
 #endif
 // GPIO 函数声明

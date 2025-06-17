@@ -2,18 +2,18 @@
 #include "time.h"
 
 // 数码管段选值数组
-const unsigned char digit_segments[10] = {
+const uchar digit_segments[10] = {
   0xc0,0xf9,0xa4,0xb0,0x99,0x92,0x82,0xf8,0x80,0x90
 };
 
-void static_led_on(int position, int number)
+void static_led_on(uchar position, uchar number)
 {
     // 位置范围检查
-    if (position < 0 || position > 2)
+    if (position > 2)
         return; // 无效位置
 
     // 数字范围检查
-    if (number < 0 || number > 9)
+    if (number > 9)
         return; // 无效数字
 
   switch (position) {
@@ -34,10 +34,10 @@ void static_led_on(int position, int number)
     }
 }
 
-void led_off(int position)
+void led_off(uchar position)
 {
     // 位置范围检查
-    if (position < 0 || position > 2)
+    if (position > 2)
         return; // 无效位置
 
     switch (position) {
@@ -55,12 +55,12 @@ void led_off(int position)
     }
 }
 
-void dynamic_led_on(int number_one, int number_two, int number_three)
+void dynamic_led_on(uchar number_one, uchar number_two, uchar number_three)
 {
     // 数字范围检查
-    if (number_one < 0 || number_one > 9 ||
-        number_two < 0 || number_two > 9 ||
-        number_three < 0 || number_three > 9)
+    if (number_one > 9 ||
+        number_two > 9 ||
+        number_three > 9)
         return; // 无效数字
 
     // 点亮第一个数码管
