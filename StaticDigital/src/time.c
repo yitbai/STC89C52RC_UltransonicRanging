@@ -1,4 +1,7 @@
 #include "time.h"
+#include "my_types.h"
+#include "led.h"
+#include "beep.h"
 
 void delay_ms(uint ms)
 {
@@ -35,20 +38,39 @@ void delay_ms(uint ms)
   }
 }
 
-// value: 0-65535
-// timer: 0-2 (0: TH0/TL0, 1: TH1/TL1, 2: TH2/TL2)
-uchar set_timer_value(uchar timer,uint value)
+
+void timer1_isr(void) __interrupt 3
 {
-  if (timer > 2) // 检查定时器编号是否有效
-        return 0; // 返回0表示设置失败
-  if (timer == 0) {
-    TH0 = (value >> 8) & 0xFF; // 设置定时器高字节
-    TL0 = value & 0xFF;        // 设置定时器低字节
-    return 1; // 返回1表示设置成功
-  } else if (timer == 1) {
-    TH1 = (value >> 8) & 0xFF; // 设置定时器1高字节
-    TL1 = value & 0xFF;        // 设置定时器1低字节
-    return 1; // 返回1表示设置成功
+  // 定时器1中断服务程序
+  static uint timerCounter = 0;  // 定时器计数器
+  static uint ms = 2000;  // LED闪烁周期，单位为毫秒
+  static uint8_t beepState = 0;  // 蜂鸣器状态，0为关闭，1为打开
+    
+  // 定时器1中断每1毫秒触发一次
+  TH1 = 0xFC;  // 定时器初值高8位
+  TL1 = 0x18;  // 定时器初值低8位
+    
+  // 增加定时器计数器
+  timerCounter++;
+
+  // 当计数器达到ms时，切换蜂鸣器状态
+  if (timerCounter >= ms) {
+        timerCounter = 0;  // 重置计数器
+        beep = beepState;
+        beepState = !beepState;  // 切换蜂鸣器状态
   }
-  return 0; // 返回0表示设置失败
+}
+
+void delay_timer1(void)
+{
+  // 使用中断的方式进行延时
+  EA = 1; // 允许总中断
+  ET1 = 1; // 允许定时器1中断
+  PT1 = 1; // 设置定时器1中断为高优先级
+  TMOD = 0x10; // 设置定时器1为模式1(16位定时器)
+
+  // 定时器1中断每1毫秒触发一次
+  TH1 = 0xFC;  // 定时器初值高8位
+  TL1 = 0x18;  // 定时器初值低8位
+  TR1 = 1; // 启动定时器1
 }

@@ -1,5 +1,5 @@
 #include "gpio.h"
-
+#include "my_types.h"
 
 // gpio 初始化
 void gpio_Init(void)
@@ -10,7 +10,5 @@ void gpio_Init(void)
   P3_6 = 1; // 数码管3位选
   P1 = 0x00; // 数码管段选
   // 蜂鸣器初始化
-  P2_3 = 1; // 蜂鸣器关闭
-
-//  P2 = 0x00; // 按键与蜂鸣器位选
+  beep = 1; // 蜂鸣器关闭
 }

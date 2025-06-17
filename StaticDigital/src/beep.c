@@ -1,10 +1,11 @@
 #include "beep.h"
+#include "my_types.h"
 
 void beep_on(void)
 {
-    P2_3 = 0; // 打开蜂鸣器
+    beep = 0; // 打开蜂鸣器
 }
 void beep_off(void)
 {
-    P2_3 = 1; // 关闭蜂鸣器
+    beep = 1; // 关闭蜂鸣器
 }
