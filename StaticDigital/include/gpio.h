@@ -1,5 +1,5 @@
-#ifndef _MYGPIO_H
-#define _MYGPIO_H
+#ifndef _GPIO_H
+#define _GPIO_H
 
 #include <8052.h>
 

@@ -10,6 +10,6 @@ void static_led_on(int position, int number);
 void led_off(int position);
 
 // 动态点亮数码管函数声明，position: 数码管位置（0-2），number: 数字（0-9）
-void dynamic_led_on(int position, int number);
+void dynamic_led_on(int number_one, int number_two, int number_three);
 
 #endif
