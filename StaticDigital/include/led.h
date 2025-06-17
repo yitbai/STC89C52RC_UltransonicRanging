@@ -13,3 +13,4 @@ void led_off(int position);
 void dynamic_led_on(int number_one, int number_two, int number_three);
 
 #endif
+// 数码管控制函数声明
