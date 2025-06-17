@@ -53,3 +53,15 @@ void led_off(int position)
             break; // 不应到达这里
     }
 }
+
+void dynamic_led_on(int position, int number)
+{
+    // 位置范围检查
+    if (position < 0 || position > 2)
+        return; // 无效位置
+
+    // 数字范围检查
+    if (number < 0 || number > 9)
+        return; // 无效数字
+
+}
