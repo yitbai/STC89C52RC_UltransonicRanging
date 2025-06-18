@@ -50,9 +50,6 @@ void main(void)
     }
 
     // 更新数码管显示
-    uchar hundred = count / 100;
-    uchar ten = (count % 100) / 10;
-    uchar one = count % 10;
-    dynamic_led_display(hundred, ten, one); // 注意参数顺序是个、十、百位
+    dynamic_led_display(count); // 注意参数顺序是个、十、百位
   }
 }

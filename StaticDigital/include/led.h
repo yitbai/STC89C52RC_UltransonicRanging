@@ -10,11 +10,7 @@ void led_on(uchar position, uchar number);
 // 关闭数码管函数声明，position: 数码管位置（0-2）
 void led_off(uchar position);
 
-// 静态点亮数码管函数声明，number_one: 数码管1显示的数字（0-9），number_two: 数码管2显示的数字（0-9），number_three: 数码管3显示的数字（0-9）
-void static_led_display(uchar number_one, uchar number_two, uchar number_three);
-
 // 动态点亮数码管函数声明，number_one: 数码管1显示的数字（0-9），number_two: 数码管2显示的数字（0-9），number_three: 数码管3显示的数字（0-9）
-void dynamic_led_display(uchar number_one, uchar number_two, uchar number_three);
-
+void dynamic_led_display(uint number_display);
 #endif
 // 数码管控制函数声明

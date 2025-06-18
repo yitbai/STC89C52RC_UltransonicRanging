@@ -56,39 +56,28 @@ void led_off(uchar position)
     }
 }
 
-void static_led_display(uchar number_one, uchar number_two, uchar number_three)
+void dynamic_led_display(uint number_display)
 {
     // 数字范围检查
-    if (number_one > 9 ||
-        number_two > 9 ||
-        number_three > 9)
+    if (number_display > 999)
         return; // 无效数字
 
-    led_on(0, number_one); // 点亮第一个数码管
-    led_on(1, number_two); // 点亮第二个数码管
-    led_on(2, number_three); // 点亮第三个数码管
-}
-
-void dynamic_led_display(uchar number_one, uchar number_two, uchar number_three)
-{
-    // 数字范围检查
-    if (number_one > 9 ||
-        number_two > 9 ||
-        number_three > 9)
-        return; // 无效数字
+    uchar hundred = number_display / 100;
+    uchar ten = (number_display % 100) / 10;
+    uchar one = number_display % 10;
 
     // 点亮第一个数码管
-    led_on(0, number_one);
+    led_on(0, hundred);
     delay_ms(5); // 延时5毫秒
     led_off(0);
 
     // 点亮第二个数码管
-    led_on(1, number_two);
+    led_on(1, ten);
     delay_ms(5); // 延时5毫秒
     led_off(1);
 
     // 点亮第三个数码管
-    led_on(2, number_three);
+    led_on(2, one);
     delay_ms(5); // 延时5毫秒
     led_off(2);
 }
