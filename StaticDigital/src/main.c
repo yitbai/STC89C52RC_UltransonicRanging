@@ -6,6 +6,7 @@
 #include "beep.h"
 
 static uint count = 0; // 全局计数变量(0-999)
+static uint8_t beep_flag = 0; // 蜂鸣器状态标志
 
 void main(void)
 {
@@ -44,9 +45,15 @@ void main(void)
 
     //检查是否为10的倍数并触发蜂鸣器
     if(count % 10 == 0 && count != 0) {
-      beep_on();
-      delay_ms(100);
-      beep_off();
+        if(beep_flag == 0) { // 如果蜂鸣器未处于工作状态
+          beep_on();
+          delay_ms(500);
+          beep_flag = 1; // 设置蜂鸣器状态标志
+          beep_off();
+        }
+    }else {
+      beep_flag = 0; // 重置蜂鸣器状态标志
+      beep_off(); // 确保蜂鸣器关闭
     }
 
     // 更新数码管显示
