@@ -16,6 +16,4 @@ typedef uint8_t byte;
 #define Key_2 P2_1 // 按键2连接到P2.1
 #define Key_3 P2_2 // 按键3连接到P2.2
 
-// KEY == 0 是按下
-
 #endif

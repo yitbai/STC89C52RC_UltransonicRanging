@@ -16,18 +16,16 @@ void led_on(uchar position, uchar number)
     // 数字范围检查
     if (number > 9)
         return; // 无效数字
+    P1 = digit_segments[number]; // 设置段选
 
-  switch (position) {
+    switch (position) {
     case 0:
-        P1 = digit_segments[number]; // 设置段选
         LED_1 = 0; // 选择第一个数码管
         break;
     case 1:
-        P1 = digit_segments[number]; // 设置段选
         LED_2 = 0; // 选择第二个数码管
         break;
     case 2:
-        P1 = digit_segments[number]; // 设置段选
         LED_3 = 0; // 选择第三个数码管
         break;
     default:
